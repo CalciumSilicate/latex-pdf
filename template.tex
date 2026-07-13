@@ -1,0 +1,110 @@
+% !TEX program = xelatex
+% =====================================================================
+%  高等数学习题课讲义 — LaTeX 模板
+%  风格还原:北京大学高等数学B习题课讲义(楷体正文 / 黑体标题 / 定理环境)
+%  编译:  latexmk -xelatex <file>.tex      (推荐,自动跑足遍数)
+%         或  xelatex <file>.tex  跑两遍
+% =====================================================================
+\documentclass[11pt]{ctexart}
+
+% ---------- 页面 ----------
+\usepackage{geometry}
+\geometry{a4paper, top=2.5cm, bottom=2.5cm, left=2.4cm, right=2.4cm}
+
+% ---------- 中文字体:正文楷体,标题黑体 ----------
+\setCJKmainfont{KaiTi}                 % 正文 → 楷体(还原参考讲义)
+\ctexset{
+  section/format       = \Large\bfseries\heiti,
+  subsection/format    = \large\bfseries\heiti,
+  subsubsection/format = \normalsize\bfseries\heiti,
+}
+
+% ---------- 数学 ----------
+\usepackage{amsmath, amssymb, amsthm, mathtools}
+\usepackage{bm}
+
+% ---------- 图形 ----------
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{calc, arrows.meta, intersections}
+
+% ---------- 列表 / 超链接 ----------
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+
+% ---------- 定理类环境(中文)----------
+\theoremstyle{plain}
+\newtheorem{theorem}{定理}[section]
+\newtheorem{proposition}{命题}[section]
+\newtheorem{lemma}{引理}[section]
+\newtheorem{corollary}{推论}[section]
+
+\theoremstyle{definition}
+\newtheorem{definition}{定义}[section]
+\newtheorem{example}{例}            % 连续编号:例 1, 例 2, ...
+\newtheorem{exercise}{习题}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{注}
+
+\renewcommand{\proofname}{证明}      % proof 环境引导词 → “证明”,结尾自带 □
+
+% ---------- 常用数学宏 ----------
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\dd}{\,\mathrm{d}}
+\newcommand{\eps}{\varepsilon}
+\DeclareMathOperator{\sgn}{sgn}
+
+% ---------- 标题信息(按需修改)----------
+\title{\heiti 北京大学高等数学B习题课讲义:预备知识}
+\author{作者姓名 \\ 北京大学数学科学学院}
+\date{最后修改:\today}
+
+% =====================================================================
+\begin{document}
+\maketitle
+
+% ------- 引言段(可选)-------
+本讲义大致按照教材顺序梳理本章的核心概念、定理与典型例题,供初学者复习与查阅之用。
+
+% =========================== 正文从此开始 ===========================
+
+\section{知识点详解}
+
+\subsection{实数和不等式}
+
+% 无编号的小标题(参考讲义中“有理数和无理数”这类)用带星号的 subsubsection
+\subsubsection*{有理数和无理数}
+
+有理数是可以写成两个整数之比 $\frac{p}{q}$($q\neq 0$)的数,全体有理数记作 $\Q$;
+无法写成这种形式的实数称为无理数。
+
+\begin{theorem}[算术—几何平均不等式]
+设 $a_1,a_2,\dots,a_n\ge 0$,则
+\begin{equation}
+  \frac{a_1+a_2+\cdots+a_n}{n}\ \ge\ \sqrt[n]{a_1 a_2\cdots a_n},
+\end{equation}
+当且仅当 $a_1=a_2=\cdots=a_n$ 时取等号。
+\end{theorem}
+
+\begin{example}
+求证 $\sqrt{2}$ 是无理数。
+\end{example}
+
+\begin{proof}
+反证法。设 $\sqrt{2}=\frac{p}{q}$,其中 $p,q$ 互质。则 $p^2=2q^2$,故 $p$ 为偶数,
+记 $p=2k$,代入得 $q^2=2k^2$,从而 $q$ 也为偶数,与 $p,q$ 互质矛盾。
+\end{proof}
+
+\begin{remark}
+上述反证法的关键在于“互质”假设导出的奇偶性矛盾。
+\end{remark}
+
+% =========================== 正文到此结束 ===========================
+
+\end{document}
