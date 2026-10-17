@@ -11,18 +11,20 @@ description: >-
 
 把用户给的数学内容,按北大《高等数学习题课讲义》的版式写成 LaTeX 并编译成 PDF。
 
-## 本机环境(已验证可用)
+格式参考来源:[darkoxie 网站](https://darkoxie.github.io/)上的高等数学习题课讲义。仅参考排版格式,原讲义的著作权归原作者所有。
 
-- TeX 发行版:**TinyTeX**(TeX Live 内核),引擎用 **xelatex**。
-- 字体:系统已装 **KaiTi(楷体)**、**SimHei(黑体)**、SimSun;正文楷体、标题黑体由模板配置好。
-- 渲染查看 PDF:用 **Python + PyMuPDF**(`import fitz`)把 PDF 转成 PNG 再用 Read 工具看,系统没有 pdftoppm。
+## 环境要求
+
+- TeX 发行版:建议使用 **TinyTeX**(TeX Live 内核),确保 **xelatex**、**latexmk** 和 **tlmgr** 可用。
+- 字体:需安装 **KaiTi(楷体)**、**SimHei(黑体)**、SimSun;正文楷体、标题黑体由模板配置好。
+- 渲染查看 PDF:可用 **Python + PyMuPDF**(`import fitz`)把 PDF 转成 PNG 再用图片查看工具检查;使用前确认依赖可用。
 
 ## 本 skill 的文件
 
 - `template.tex` — 还原讲义风格的完整模板(导言区 + 正文骨架)。**正文从 `% 正文从此开始` 到 `% 正文到此结束` 之间**,替换这段即可。
 - `build.ps1` — 自愈式编译脚本:跑 `latexmk -xelatex`,若缺宏包会自动 `tlmgr` 定位并安装后重试。
 
-> skill 目录:`C:\Users\89366\.claude\skills\latex-pdf\`
+> 以下 `<skill目录>` 指本 `SKILL.md` 所在目录,请替换为实际安装路径,不要假定用户名或客户端的 skills 目录。
 
 ## 工作流程
 
@@ -34,7 +36,7 @@ description: >-
 
 3. **编译**:
    ```powershell
-   powershell -File "C:\Users\89366\.claude\skills\latex-pdf\build.ps1" "<工作目录>\<文件>.tex"
+   powershell -File "<skill目录>\build.ps1" "<工作目录>\<文件>.tex"
    ```
    成功输出 `BUILD OK -> ...pdf`。脚本会自动补装缺失的宏包,无需手动 `tlmgr install`。
 
